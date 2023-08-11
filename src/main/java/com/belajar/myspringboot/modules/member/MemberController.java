@@ -22,31 +22,31 @@ public class MemberController {
     MemberService memberService;
     
     @GetMapping
-    public ResponseEntity<Response> findAll() {
+    public ResponseEntity findAll() {
         Response member = memberService.findAll(null);
         return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(member);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Response> findById(@PathVariable("id") Integer id) {
+    public ResponseEntity findById(@PathVariable("id") Integer id) {
         Response member = memberService.findById(id);
         return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(member);
     }
 
     @PostMapping
-    public ResponseEntity<Response> create(@RequestBody Member member) {
+    public ResponseEntity create(@RequestBody Member member) {
         Response created = memberService.create(member);
         return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(created);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Response> update(@PathVariable("id") Integer id, @RequestBody Member member) {
+    public ResponseEntity update(@PathVariable("id") Integer id, @RequestBody Member member) {
         Response updated = memberService.update(id, member);
         return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(updated);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Response> delete(@PathVariable("id") Integer id) {
+    public ResponseEntity delete(@PathVariable("id") Integer id) {
         Response deleted = memberService.delete(id);
         return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(deleted);
     }
