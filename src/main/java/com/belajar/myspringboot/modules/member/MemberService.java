@@ -6,8 +6,6 @@ import org.springframework.stereotype.Service;
 
 import com.belajar.myspringboot.utils.Response;
 
-import java.util.List;
-
 import javax.transaction.Transactional;
 
 @Service
