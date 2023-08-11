@@ -32,7 +32,7 @@ public class MemberController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Response> findById(@PathVariable("id") Integer id) {
-        Member member = memberService.findById(id);
+        Response member = memberService.findById(id);
         Response response = new Response();
         response.setStatusCode(200);
         response.setMessage("Get data member with id "+id+" success");
@@ -42,7 +42,7 @@ public class MemberController {
 
     @PostMapping
     public ResponseEntity<Response> create(@RequestBody Member member) {
-        Integer created = memberService.create(member);
+        Response created = memberService.create(member);
         Response response = new Response();
         response.setStatusCode(200);
         response.setMessage("Insert data member success");
@@ -52,7 +52,7 @@ public class MemberController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Response> update(@PathVariable("id") Integer id, @RequestBody Member member) {
-        Integer updated = memberService.update(id, member);
+        Response updated = memberService.update(id, member);
         Response response = new Response();
         response.setStatusCode(200);
         response.setMessage("Update data member with id "+id+" success");
@@ -62,11 +62,7 @@ public class MemberController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Response> delete(@PathVariable("id") Integer id) {
-        Integer deleted = memberService.delete(id);
-        Response response = new Response();
-        response.setStatusCode(200);
-        response.setMessage("Delete data member with id "+id+" success");
-        response.setData(deleted);
-        return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(response);
+        Response deleted = memberService.delete(id);
+        return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(deleted);
     }
 }
