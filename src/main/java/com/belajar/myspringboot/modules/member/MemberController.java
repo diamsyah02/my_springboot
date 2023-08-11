@@ -23,41 +23,26 @@ public class MemberController {
     
     @GetMapping
     public ResponseEntity<Response> findAll() {
-        Response response = new Response();
-        response.setStatusCode(200);
-        response.setMessage("Get data member success");
-        response.setData(memberService.findAll(null));
-        return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(response);
+        Response member = memberService.findAll(null);
+        return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(member);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Response> findById(@PathVariable("id") Integer id) {
         Response member = memberService.findById(id);
-        Response response = new Response();
-        response.setStatusCode(200);
-        response.setMessage("Get data member with id "+id+" success");
-        response.setData(member);
-        return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(response);
+        return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(member);
     }
 
     @PostMapping
     public ResponseEntity<Response> create(@RequestBody Member member) {
         Response created = memberService.create(member);
-        Response response = new Response();
-        response.setStatusCode(200);
-        response.setMessage("Insert data member success");
-        response.setData(created);
-        return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(response);
+        return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(created);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Response> update(@PathVariable("id") Integer id, @RequestBody Member member) {
         Response updated = memberService.update(id, member);
-        Response response = new Response();
-        response.setStatusCode(200);
-        response.setMessage("Update data member with id "+id+" success");
-        response.setData(updated);
-        return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(response);
+        return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(updated);
     }
 
     @DeleteMapping("/{id}")
