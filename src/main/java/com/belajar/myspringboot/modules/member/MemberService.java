@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import com.belajar.myspringboot.utils.Response;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 @Service
@@ -14,7 +16,7 @@ public class MemberService {
     MemberRepository memberRepository;
     
     public Response findAll(Pageable pageable) {
-        var data = memberRepository.findAll();
+        List<Member> data = memberRepository.findAll();
         Response response = new Response();
         response.setStatusCode(200);
         response.setMessage("Get data member success");
@@ -23,7 +25,7 @@ public class MemberService {
     }
 
     public Response findById(Integer id) {
-        var data = memberRepository.find(id);
+        Member data = memberRepository.find(id);
         Response response = new Response();
         response.setStatusCode(200);
         response.setMessage("Get data member success");
@@ -33,7 +35,7 @@ public class MemberService {
 
     @Transactional
     public Response create(Member member) {
-        var data = memberRepository.create(
+        Integer data = memberRepository.create(
             member.getNama_member(),
             member.getEmail(),
             member.getNo_hp()
@@ -52,7 +54,7 @@ public class MemberService {
 
     @Transactional
     public Response update(Integer id, Member member) {
-        var data = memberRepository.update(
+        Integer data = memberRepository.update(
             id,
             member.getNama_member(),
             member.getEmail(),
@@ -72,7 +74,7 @@ public class MemberService {
 
     @Transactional
     public Response delete(Integer id) {
-        var data = memberRepository.delete(id);
+        Integer data = memberRepository.delete(id);
         Response response = new Response();
         if(data == 1) {
             response.setStatusCode(200);
